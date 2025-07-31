@@ -1,0 +1,117 @@
+<!-- components/employers.html -->
+
+<div class="container mt-4">
+  <h2 class="mb-4">Employers Management</h2>
+
+  <!-- Filter -->
+  <div class="mb-3">
+    <label for="filterCompany">Filter by Company:</label>
+    <select id="filterCompany" class="form-select">
+      <option value="">All Companies</option>
+    </select>
+  </div>
+<div class="d-flex justify-content-between align-items-center mb-3">
+  <h2>Employer Management</h2>
+<button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addEmployerModal">
+  + Add Employer
+</button> 
+</div>
+
+  <!-- Table -->
+  <table id="employersTable" class="table table-bordered">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Contact</th>
+        <th>Company</th>
+        <th>Address</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+
+  <!-- Add Employer Modal -->
+<div class="modal fade" id="addEmployerModal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form id="addEmployerForm">
+        <div class="modal-header">
+          <h5 class="modal-title">Add Employer</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-3">
+            <label>Name</label>
+            <input type="text" name="name" class="form-control" required>
+          </div>
+          <div class="mb-3">
+            <label>Email</label>
+            <input type="email" name="email" class="form-control" required>
+          </div>
+          <div class="mb-3">
+            <label>Contact</label>
+            <input type="text" name="contact" class="form-control">
+          </div>
+          <div class="mb-3">
+            <label>Company</label>
+            <input type="text" name="company_name" class="form-control">
+          </div>
+          <div class="mb-3">
+            <label>Address</label>
+            <textarea name="address" class="form-control"></textarea>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary">Add</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+  <!-- Edit Employer Modal -->
+<div class="modal fade" id="employerModal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form id="editEmployerForm">
+        <div class="modal-header">
+          <h5 class="modal-title">Edit Employer</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <input type="hidden" name="id" id="employerId">
+          <div class="mb-3">
+            <label>Name</label>
+            <input type="text" name="name" class="form-control" required>
+          </div>
+          <div class="mb-3">
+            <label>Email</label>
+            <input type="email" name="email" class="form-control" required>
+          </div>
+          <div class="mb-3">
+            <label>Contact</label>
+            <input type="text" name="contact" class="form-control">
+          </div>
+          <div class="mb-3">
+            <label>Company</label>
+            <input type="text" name="company_name" class="form-control">
+          </div>
+          <div class="mb-3">
+            <label>Address</label>
+            <textarea name="address" class="form-control"></textarea>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary">Save</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script src="js/employers.js"></script>
+
