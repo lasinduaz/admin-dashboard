@@ -148,3 +148,37 @@
     </div>
   </div>
 </div>
+<!-- View Worker Modal -->
+<div class="modal fade" id="viewWorkerModal" tabindex="-1" aria-labelledby="viewWorkerModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header bg-info text-white">
+        <h5 class="modal-title" id="viewWorkerModalLabel">Worker Details</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p><strong>Full Name:</strong> <span id="viewFullName"></span></p>
+        <p><strong>Email:</strong> <span id="viewEmail"></span></p>
+        <p><strong>Contact Number:</strong> <span id="viewContactNumber"></span></p>
+        <p><strong>ID Number:</strong> <span id="viewIdNumber"></span></p>
+        <p><strong>Created At:</strong> <span id="viewCreatedAt"></span></p>
+        <p><strong>Username:</strong> <span id="viewUsername"><small class="text-danger">User did not upload</small></span></p>
+<p><strong>Date of Birth:</strong> <span id="viewDob"><small class="text-danger">User did not upload</small></span></p>
+<p><strong>Address:</strong> <span id="viewAddress"><small class="text-danger">User did not upload</small></span></p>
+<p><strong>Bank Account:</strong> <span id="viewBankAccountNumber"><small class="text-danger">User did not upload</small></span></p>
+
+<p><strong>Profile Image:</strong><br>
+    <img id="viewProfileImage" src="" width="100" style="display:none;" />
+    <small id="viewProfileImageWarning" class="text-danger">User did not upload</small>
+</p>
+
+<p><strong>ID Image:</strong><br>
+    <img id="viewIdImage" src="" width="100" style="display:none;" />
+    <small id="viewIdImageWarning" class="text-danger">User did not upload</small>
+</p>
+
+        <!-- Add more fields here -->
+      </div>
+    </div>
+  </div>
+</div>

@@ -32,8 +32,10 @@ function loadWorkers() {
           worker.idNumber || 'N/A',
           worker.contactNumber || 'N/A',
           worker.created_at || 'N/A',
-          `<button class="btn btn-sm btn-warning edit-btn" data-id="${worker.id}">Edit</button>
+          `<button class="btn btn-sm btn-info view-btn" data-id="${worker.id}">View</button>
+          <button class="btn btn-sm btn-warning edit-btn" data-id="${worker.id}">Edit</button>
            <button class="btn btn-sm btn-danger delete-btn" data-id="${worker.id}">Delete</button>`
+           
         ]).draw(false).node();
 
         $(rowNode).attr('data-worker-id', worker.id);
@@ -82,6 +84,67 @@ $(document).on('click', '.edit-btn', function (e) {
     .catch(err => {
       console.error('Fetch error:', err);
       alert('Failed to load worker data: ' + err.message);
+    });
+});
+
+// 👁️ When View Button is Clicked (delegated handler)
+$(document).on('click', '.view-btn', function () {
+  const workerId = $(this).data('id');
+
+  fetch(`api/get_worker_by_id.php?id=${workerId}`)
+    .then(res => res.json())
+    .then(worker => {
+      if (worker.error) {
+        alert('Error: ' + worker.error);
+        return;
+      }
+
+      // Fill data into modal
+      $('#viewFullName').text(worker.fullName);
+      $('#viewEmail').text(worker.email);
+      $('#viewContactNumber').text(worker.contactNumber || 'N/A');
+      $('#viewIdNumber').text(worker.idNumber || 'N/A');
+      $('#viewCreatedAt').text(worker.created_at || 'N/A');
+
+      // Handle text fields
+      function setOrWarn(id, value) {
+        if (value && value.trim() !== '') {
+          $(`#${id}`).text(value);
+        } else {
+          $(`#${id}`).html('<small class="text-danger">User did not upload</small>');
+        }
+      }
+      setOrWarn('viewUsername', worker.username);
+      setOrWarn('viewDob', worker.dob);
+      setOrWarn('viewAddress', worker.permanentAddress);
+      setOrWarn('viewBankAccountNumber', worker.bankAccountNumber);
+
+      // Handle profile image
+      if (worker.profileImage && worker.profileImage.trim() !== '') {
+        $('#viewProfileImage')
+          .attr('src', '../uploads/' + worker.profileImage)
+          .show();
+        $('#viewProfileImageWarning').hide();
+      } else {
+        $('#viewProfileImage').hide();
+        $('#viewProfileImageWarning').show();
+      }
+      if (worker.idImage && worker.idImage.trim() !== '') {
+        $('#viewIdImage')
+          .attr('src', '../uploads/' + worker.idImage)
+          .show();
+        $('#viewIdImageWarning').hide();
+      } else {
+        $('#viewIdImage').hide();
+        $('#viewIdImageWarning').show();
+      }
+
+      const viewModal = new bootstrap.Modal(document.getElementById('viewWorkerModal'));
+      viewModal.show();
+    })
+    .catch(err => {
+      console.error('Fetch error:', err);
+      alert('Failed to load worker data.');
     });
 });
 
