@@ -1,0 +1,150 @@
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h4>👷 Workers</h4>
+        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addWorkerModal">+ Add Worker</button>
+    </div>
+
+    <table id="workersTable" class="table table-striped table-bordered">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Full Name</th>
+                <th>Username</th>
+                <th>Email</th>
+                <th>ID Number</th>
+                <th>Contact</th>
+                <th>Created At</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</div>
+
+<!-- Add Worker Modal -->
+<div class="modal fade" id="addWorkerModal" tabindex="-1" aria-labelledby="addWorkerModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+      <form id="addWorkerForm" enctype="multipart/form-data">
+        <div class="modal-header">
+          <h5 class="modal-title" id="addWorkerModalLabel">Add Worker</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+
+        <div class="modal-body">
+          <!-- Required Fields -->
+          <div class="mb-3">
+            <label for="fullName" class="form-label">Full Name</label>
+            <input type="text" class="form-control" id="fullName" name="fullName" required>
+          </div>
+
+          <div class="mb-3">
+            <label for="username" class="form-label">Username</label>
+            <input type="text" class="form-control" id="username" name="username" required>
+          </div>
+
+          <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" class="form-control" id="email" name="email" required>
+          </div>
+
+          <div class="mb-3">
+            <label for="contactNumber" class="form-label">Contact Number</label>
+            <input type="text" class="form-control" id="contactNumber" name="contactNumber">
+          </div>
+
+          <div class="mb-3">
+            <label for="idNumber" class="form-label">ID Number</label>
+            <input type="text" class="form-control" id="idNumber" name="idNumber" required>
+          </div>
+
+          <div class="mb-3">
+            <label for="password" class="form-label">Password</label>
+            <input type="password" class="form-control" id="password" name="password" required>
+          </div>
+
+          <!-- Optional Fields -->
+          <div class="mb-3">
+            <label for="permanentAddress" class="form-label">Permanent Address</label>
+            <textarea class="form-control" id="permanentAddress" name="permanentAddress"></textarea>
+          </div>
+
+          <div class="mb-3">
+            <label for="currentAddress" class="form-label">Current Address</label>
+            <textarea class="form-control" id="currentAddress" name="currentAddress"></textarea>
+          </div>
+
+          <div class="mb-3">
+            <label for="workExperience" class="form-label">Work Experience</label>
+            <textarea class="form-control" id="workExperience" name="workExperience"></textarea>
+          </div>
+
+          <div class="mb-3">
+            <label for="bankAccountNumber" class="form-label">Bank Account Number</label>
+            <input type="text" class="form-control" id="bankAccountNumber" name="bankAccountNumber">
+          </div>
+
+          <div class="mb-3">
+            <label for="bankName" class="form-label">Bank Name</label>
+            <input type="text" class="form-control" id="bankName" name="bankName">
+          </div>
+
+          <div class="mb-3">
+            <label for="bankBranch" class="form-label">Bank Branch</label>
+            <input type="text" class="form-control" id="bankBranch" name="bankBranch">
+          </div>
+
+          <!-- File Uploads -->
+          <div class="mb-3">
+            <label for="idFrontImage" class="form-label">ID Front Image</label>
+            <input type="file" class="form-control" id="idFrontImage" name="idFrontImage" accept="image/*">
+          </div>
+
+          <div class="mb-3">
+            <label for="idBackImage" class="form-label">ID Back Image</label>
+            <input type="file" class="form-control" id="idBackImage" name="idBackImage" accept="image/*">
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-success">Save</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Edit Worker Modal -->
+<div class="modal fade" id="editWorkerModal" tabindex="-1" aria-labelledby="editWorkerModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+      <form id="editWorkerForm">
+        <div class="modal-header">
+          <h5 class="modal-title">Edit Worker</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <input type="hidden" id="editWorkerId" name="id">
+
+          <div class="mb-3">
+            <label for="editFullName" class="form-label">Full Name</label>
+            <input type="text" class="form-control" id="editFullName" name="fullName" required>
+          </div>
+          <div class="mb-3">
+            <label for="editContactNumber" class="form-label">Contact</label>
+            <input type="text" class="form-control" id="editContactNumber" name="contactNumber">
+          </div>
+          <div class="mb-3">
+            <label for="editEmail" class="form-label">Email</label>
+            <input type="email" class="form-control" id="editEmail" name="email" required>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-success">Save Changes</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,79 @@
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h4>👷 Workers</h4>
+    <button class="btn btn-primary" id="addWorkerBtn">+ Add Worker</button>
+</div>
+
+<table id="workersTable" class="table table-striped table-bordered">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Full Name</th>
+            <th>Username</th>
+            <th>Email</th>
+            <th>ID Number</th>
+            <th>Contact</th>
+            <th>Created At</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+
+<!-- Add/Edit Worker Modal -->
+<div class="modal fade" id="workerModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <form id="workerForm">
+                <div class="modal-header">
+                    <h5 class="modal-title">Add/Edit Worker</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <div class="modal-body row g-3">
+      <form id="workerForm">
+  <div class="modal-body row g-3">
+    <input type="hidden" id="workerId" name="worker_id">
+
+    <div class="col-md-6">
+      <label>Full Name</label>
+      <input type="text" id="fullName" name="full_name" class="form-control" required>
+    </div>
+    <div class="col-md-6">
+      <label>Username</label>
+      <input type="text" id="username" name="username" class="form-control" required>
+    </div>
+    <div class="col-md-6">
+      <label>Email</label>
+      <input type="email" id="email" name="email" class="form-control" required>
+    </div>
+    <div class="col-md-6">
+      <label>Contact Number</label>
+      <input type="text" id="contactNumber" name="contact_number" class="form-control">
+    </div>
+    <div class="col-md-6">
+      <label>ID Number</label>
+      <input type="text" id="idNumber" name="id_number" class="form-control">
+    </div>
+    <div class="col-md-6">
+      <label>Password</label>
+      <input type="password" id="password" name="password" class="form-control">
+    </div>
+    <div class="col-md-6">
+      <label>ID Front Image</label>
+      <input type="file" id="idFrontImage" name="id_front" class="form-control">
+    </div>
+    <div class="col-md-6">
+      <label>ID Back Image</label>
+      <input type="file" id="idBackImage" name="id_back" class="form-control">
+    </div>
+  </div>
+
+
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-success">Save</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
