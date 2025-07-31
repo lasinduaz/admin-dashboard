@@ -1,0 +1,264 @@
+you are assign to make a webstie for admins website  to curd operation.usisng HTML, javascript , Css and Bootstap with better user experice.
+Background of a applications 
+*There is andriod application for jobs can takes from job seekers and and job providers can takes job.Application call hire job 
+basic needs for website 
+1. loging and sign in page and logut way
+2 .Interface for curd operation for each table (provid a table)
+3.Becutifull interface
+
+
+CREATE TABLE workers (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  fullName VARCHAR(255),
+  username VARCHAR(255),
+  contactNumber VARCHAR(50),
+  email VARCHAR(255) UNIQUE,
+  idNumber VARCHAR(20),
+  permanentAddress TEXT,
+  currentAddress TEXT,
+  workExperience TEXT,
+  password VARCHAR(255),
+  bankAccountNumber VARCHAR(50),
+  bankName VARCHAR(100),
+  bankBranch VARCHAR(100),
+  idFrontImage VARCHAR(255),
+  idBackImage VARCHAR(255),
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE jobs (
+    id INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    job_title VARCHAR(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+    vacancies INT(11) NOT NULL,
+    time_range VARCHAR(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+    location VARCHAR(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+    basic_salary DECIMAL(10,2) NOT NULL,
+    ot_salary DECIMAL(10,2) DEFAULT 0.00,
+    requirements TEXT COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+    job_date DATE NOT NULL,
+    pickup_location VARCHAR(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+    contact_info VARCHAR(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+    email VARCHAR(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+    employee_id INT(11) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    
+    -- Index and Foreign Key
+    INDEX (employee_id),
+    CONSTRAINT fk_employee_id FOREIGN KEY (employee_id) REFERENCES employers(id)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE employers (
+    id INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    company_name VARCHAR(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+    name VARCHAR(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+    address TEXT COLLATE utf8mb4_unicode_ci NOT NULL,
+    email VARCHAR(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+    contact VARCHAR(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+    company_icon VARCHAR(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+    password VARCHAR(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    reset_otp VARCHAR(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+    otp_expiry DATETIME DEFAULT NULL,
+    reset_token VARCHAR(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+    token_expiry DATETIME DEFAULT NULL,
+
+    -- Add index for email (to speed up login/reset lookup)
+    INDEX (email)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+CREATE TABLE IF NOT EXISTS job_applications (
+    id INT(11) NOT NULL AUTO_INCREMENT,
+    job_id INT(11) NOT NULL,
+    worker_id_number VARCHAR(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+    applied_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (id),
+    INDEX (job_id),
+    INDEX (worker_id_number)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS worker_reviews (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    worker_id INT NOT NULL,
+    rated_by VARCHAR(255), -- Can be employer name or ID
+    rating INT CHECK (rating BETWEEN 1 AND 5),
+    feedback_text TEXT,
+    job_title VARCHAR(255),
+    company_name VARCHAR(255),
+    duration VARCHAR(100),
+    description TEXT,
+    reviewed_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (worker_id) REFERENCES workers(id) ON DELETE CASCADE
+);
+
+
+	Here is given prompt by you and i need to add last pdf funationes to this my making this prompt
+	 (this PDF funtnaties in last )
+	✅ Stack
+	Frontend: HTML5, CSS3, JavaScript (ES6+), Bootstrap 5+
+
+	UI Framework: Bootstrap 5 with optional integration of DataTables for advanced table features
+
+	Authentication: Token-based session handling (mocked or integrated)
+
+	Backend Integration: Prepared for RESTful API interaction (real or simulated via JSON)
+
+	Data Handling: Use fetch() or Axios for API communication
+
+	Form Validation: Native JavaScript + Bootstrap classes
+
+	🎯 Core Features
+	🔐 1. Authentication System
+	Login page with email and password inputs
+
+	Signup page (optional, only for admin role)
+
+	Logout feature (token/session cleanup)
+
+	UI redirection based on auth state (JS-controlled)
+
+	🧭 2. Admin Dashboard Structure
+	Build a modular admin panel layout:
+
+	Sidebar Navigation with links to each CRUD module
+
+	Top Navbar: includes admin info, logout, responsive toggle
+
+	Main Content Area: loads respective pages dynamically (SPA-like behavior preferred)
+
+	🧾 3. CRUD Modules for All Tables
+	Build one CRUD interface per table:
+
+	a. Workers (workers table)
+
+	sql
+	Copy
+	Edit
+	CREATE TABLE workers (
+	  id INT AUTO_INCREMENT PRIMARY KEY,
+	  fullName VARCHAR(255),
+	  ...
+	);
+	List: Table with pagination, search
+
+	Create: Modal form (file upload for ID images)
+
+	Edit: Prefilled form modal
+
+	Delete: Modal confirm
+
+	b. Jobs (jobs table)
+
+	List job entries with filter by date/location/title
+
+	Create/Edit: Inputs for salary, requirements, employer reference
+
+	Validation for foreign key: employee_id from employers table
+
+	c. Employers (employers table)
+
+	Form for company info + file input for logo
+
+	CRUD operations with email validation
+
+	d. Job Applications (job_applications table)
+
+	List all applications with filters by job_id and worker_id_number
+
+	Allow deletion (soft delete optional)
+
+	e. Worker Reviews (worker_reviews table)
+
+	Show rating visually (e.g., stars 1–5)
+
+	Filter reviews by worker_id
+
+	CRUD support (edit and delete)
+
+	✨ 4. UI/UX Enhancements
+	Responsive design (mobile/tablet-friendly)
+
+	Bootstrap components (modals, toasts, alerts)
+
+	Loading indicators for API calls
+
+	Toasts for create/update/delete feedback
+
+	Sticky navbar/sidebar for usability
+
+	📁 Project Folder Structure
+	pgsql
+	Copy
+	Edit
+	/admin-dashboard
+	│
+	├── index.html                → Dashboard wrapper
+	├── login.html                → Auth page
+	├── signup.html               → Optional admin signup
+	│
+	├── /css
+	│   └── style.css             → Custom overrides
+	│
+	├── /js
+	│   ├── auth.js               → Login/Logout logic
+	│   ├── dashboard.js          → Page routing, dynamic load
+	│   ├── workers.js
+	│   ├── jobs.js
+	│   ├── employers.js
+	│   ├── applications.js
+	│   └── reviews.js
+	│
+	├── /components
+	│   ├── sidebar.html          → Navigation links
+	│   └── navbar.html           → Topbar with logout
+	│
+	├── /assets
+	│   ├── /images
+	│   └── /icons
+	│
+	└── /api (optional mock JSON for testing without backend)
+	📌 Goals
+	Build a fully responsive, single-page-feel admin dashboard
+
+	Maintain high code modularity for each table/entity
+
+	Ensure clear UX for data operations (form states, modal feedback)
+
+	Keep backend interaction generic (easy to integrate with PHP/Node API)
+
+	PDF funtnaties 
+	3. 📋 Jobs Listing (jobs table)
+	Use Case: When stakeholders or team leads want to review all job listings or a filtered list (e.g., this month's jobs).
+
+	Include in PDF:
+
+	Job Title
+
+	Location
+
+	Time Range
+
+	Vacancies
+
+	Salary Details (Basic + OT)
+
+	Job Date
+
+	Contact Info
+
+	Associated Employer
+
+	4. 📄 Job Applications Report (job_applications table)
+	Use Case: To evaluate interest or candidate engagement for specific jobs—shared with hiring managers or employers.
+
+	Include in PDF:
+
+	Job ID
+
+	Worker ID Number
+
+	Applied At Timestamp
+
+	(Optional: fetch job title and worker name from joins)
+
+
