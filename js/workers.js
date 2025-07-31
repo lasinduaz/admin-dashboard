@@ -5,7 +5,8 @@ function initializeDataTable() {
     workersDataTable = $('#workersTable').DataTable({
       autoWidth: false,
       responsive: true,
-      destroy: true
+      destroy: true,
+      lengthChange: false
     });
   } else {
     workersDataTable = $('#workersTable').DataTable();
@@ -32,6 +33,7 @@ function loadWorkers() {
           worker.idNumber || 'N/A',
           worker.contactNumber || 'N/A',
           worker.created_at || 'N/A',
+          (worker.bankAccountNumber ? 'Yes' : 'No'),
           `<button class="btn btn-sm btn-info view-btn" data-id="${worker.id}">View</button>
           <button class="btn btn-sm btn-warning edit-btn" data-id="${worker.id}">Edit</button>
            <button class="btn btn-sm btn-danger delete-btn" data-id="${worker.id}">Delete</button>`
@@ -276,6 +278,26 @@ $(document).ready(function () {
   // Initialize DataTable and load workers
   initializeDataTable();
   loadWorkers();
+
+  // Custom Filter by Month
+  $('#filterMonth').on('change', function () {
+    const month = this.value;
+    workersDataTable.column(6) // 'created_at' is at column index 6
+      .search(month, true, false)
+      .draw();
+  });
+
+  // Custom Filter by Bank Info
+  $('#filterBank').on('change', function () {
+    const filterValue = this.value;
+    if (filterValue === 'yes') {
+      workersDataTable.column(7).search('Yes').draw(); // 7 is 'bank info' column
+    } else if (filterValue === 'no') {
+      workersDataTable.column(7).search('No').draw();
+    } else {
+      workersDataTable.column(7).search('').draw();
+    }
+  });
 });
 
 // Clean up DataTable on page unload
