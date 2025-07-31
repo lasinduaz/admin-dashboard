@@ -1,5 +1,0 @@
-TCP/IP port number for SQL 3306 protocol port  33060
-Rootpassword = root
-windows server name = MySQL94
-DB name = adm_dash
-
