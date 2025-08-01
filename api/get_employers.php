@@ -11,7 +11,6 @@ $employers = [];
 
 if ($result) {
     while ($row = $result->fetch_assoc()) {
-        // Make sure keys match DataTable columns: id, name, email, contact, company_name, address
         $employers[] = [
             'id' => $row['id'],
             'name' => $row['name'],
@@ -23,7 +22,12 @@ if ($result) {
     }
 }
 
-echo json_encode($employers);
+// Return consistent response format
+$response = [
+    'status' => 'success',
+    'data' => $employers
+];
 
+echo json_encode($response);
 $conn->close();
 ?>
